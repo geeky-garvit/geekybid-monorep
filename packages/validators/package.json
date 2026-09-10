@@ -1,0 +1,8 @@
+{
+  "name": "@auction/validators",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "zod": "^4.4.3"
+  }
+}
