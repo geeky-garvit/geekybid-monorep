@@ -16,6 +16,11 @@
     "prettier": "^3.0.0",
     "turbo": "^2.0.0"
   },
+  "overrides": {
+    "@babel/core": "7.26.9",
+    "@babel/preset-typescript": "7.26.0",
+    "@babel/preset-env": "7.26.9"
+  },
   "engines": {
     "node": ">=18"
   }
