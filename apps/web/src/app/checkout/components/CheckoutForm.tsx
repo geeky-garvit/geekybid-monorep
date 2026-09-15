@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { formatCurrency } from '@/lib/currency';
 
 type PaymentStatus = 'idle' | 'processing' | 'webhook_received' | 'completed' | 'failed';
 
@@ -142,7 +143,7 @@ export default function CheckoutForm({
         }`}
       >
         {paymentStatus === 'idle'
-          ? `Pay & Complete Order ($${totalAmount.toFixed(2)})`
+          ? `Pay & Complete Order (${formatCurrency(totalAmount)})`
           : 'Processing Payment Webhook...'}
       </button>
     </form>

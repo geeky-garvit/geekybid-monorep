@@ -47,7 +47,7 @@ export default function UserDashboardPage() {
           ['Live listings', myListings.filter((auction) => auction.status === 'live').length],
           ['Active bids', activeBids],
           ['Orders won', myOrders.length],
-          ['Bid value', `$${amountCommitted.toFixed(2)}`],
+          ['Bid value', `₹${amountCommitted.toFixed(2)}`],
         ].map(([label, value]) => <div key={label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">{label}</p><p className="mt-1 text-xl font-black text-purple-950">{value}</p></div>)}
       </section>
 

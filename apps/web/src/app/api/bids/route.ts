@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
           userId: user.id,
           action: 'BID_PLACED',
           amount,
-          details: `Placed bid of $${amount} on "${auction.title}"`,
+          details: `Placed bid of ₹${amount} on "${auction.title}"`,
         },
       });
 

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAuctionResult } from '@/lib/db';
+import { formatCurrency } from '@/lib/currency';
 
 export const dynamic = 'force-dynamic';
 
@@ -84,7 +85,7 @@ export default async function WinnerResultPage({
                     </p>
 
                     <p className="mt-1 text-3xl font-black text-slate-900">
-                      ${winningBid.amount.toLocaleString()}
+                      {formatCurrency(winningBid.amount)}
                     </p>
                   </div>
                 </>

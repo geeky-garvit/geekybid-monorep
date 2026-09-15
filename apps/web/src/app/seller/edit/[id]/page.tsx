@@ -132,7 +132,7 @@ export default function EditAuctionPage({ params }: { params: Promise<{ id: stri
           <input
             type="text"
             disabled
-            value={`$${auction.currentHighestBid.toFixed(2)} (${auction.bidsCount} bids)`}
+            value={`₹${auction.currentHighestBid.toFixed(2)} (${auction.bidsCount} bids)`}
             className="w-full p-2.5 border border-slate-200 bg-slate-100 text-slate-500 rounded-xl text-xs font-bold cursor-not-allowed"
           />
         </div>

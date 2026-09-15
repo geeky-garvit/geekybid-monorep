@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { formatCurrency } from '@/lib/currency';
 
 interface OrderSuccessViewProps {
   orderId: string;
@@ -46,7 +47,7 @@ export default function OrderSuccessView({
         </p>
         <div className="pt-2 flex justify-between font-black text-slate-900 border-t">
           <span>Total Paid:</span>
-          <span className="text-purple-950">${totalAmount.toFixed(2)}</span>
+          <span className="text-purple-950">{formatCurrency(totalAmount)}</span>
         </div>
       </div>
 

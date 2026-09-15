@@ -49,7 +49,7 @@ export default function AdminAuctionsTable({
                 </td>
                 <td className="p-4 text-slate-500 capitalize">{auction.category}</td>
                 <td className="p-4 font-black text-purple-950">
-  ${(auction.currentHighestBid ?? auction.startingPrice ?? (auction as any).currentBid ?? 0).toFixed(2)}
+                  ₹{(auction.currentHighestBid ?? auction.startingPrice ?? (auction as any).currentBid ?? 0).toFixed(2)}
 </td>
                 <td className="p-4">
                   <span

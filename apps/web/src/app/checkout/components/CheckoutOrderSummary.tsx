@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { formatCurrency } from '@/lib/currency';
 import { Auction } from '@/lib/store';
 
 interface CheckoutOrderSummaryProps {
@@ -44,21 +45,21 @@ export default function CheckoutOrderSummary({
       <div className="space-y-2 text-xs font-medium text-slate-600 border-b pb-4">
         <div className="flex justify-between">
           <span>Winning Bid Price</span>
-          <span className="font-bold text-slate-900">${winningBid.toFixed(2)}</span>
+          <span className="font-bold text-slate-900">{formatCurrency(winningBid)}</span>
         </div>
         <div className="flex justify-between">
           <span>Shipping & Handling</span>
-          <span className="font-bold text-slate-900">${shippingFee.toFixed(2)}</span>
+          <span className="font-bold text-slate-900">{formatCurrency(shippingFee)}</span>
         </div>
         <div className="flex justify-between">
           <span>Estimated Tax (8%)</span>
-          <span className="font-bold text-slate-900">${estimatedTax.toFixed(2)}</span>
+          <span className="font-bold text-slate-900">{formatCurrency(estimatedTax)}</span>
         </div>
       </div>
 
       <div className="flex justify-between items-center text-sm font-black text-slate-900 pt-1">
         <span>Total Amount Due</span>
-        <span className="text-purple-950 text-base">${totalAmount.toFixed(2)}</span>
+        <span className="text-purple-950 text-base">{formatCurrency(totalAmount)}</span>
       </div>
     </div>
   );

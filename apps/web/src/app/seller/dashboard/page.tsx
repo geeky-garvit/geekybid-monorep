@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { useAuthGuard } from '@/hooks/useAuthGuard';
+import { formatCurrency } from '@/lib/currency';
 
 interface BidHistory {
   id: string;
@@ -151,7 +152,7 @@ export default function SellerDashboardPage() {
             Total Revenue
           </span>
           <p className="text-2xl font-black text-slate-900">
-            ${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            {formatCurrency(totalRevenue)}
           </p>
           <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">
             Database Verified
@@ -257,7 +258,7 @@ export default function SellerDashboardPage() {
                         <div className="flex items-center gap-3 text-[11px] text-slate-500 mt-1 font-medium">
                           <span>
                             Current High:{' '}
-                            <strong className="text-slate-900">${item.currentHighestBid.toFixed(2)}</strong>
+                            <strong className="text-slate-900">{formatCurrency(item.currentHighestBid)}</strong>
                           </span>
                           <span>•</span>
                           <span>{item.bidsCount} bids</span>
@@ -303,7 +304,7 @@ export default function SellerDashboardPage() {
                         Bid placed by <strong className="text-purple-700">{bid.bidderName}</strong> at {bid.time}
                       </span>
                     </div>
-                    <span className="font-black text-purple-950 text-sm">${bid.amount.toFixed(2)}</span>
+                    <span className="font-black text-purple-950 text-sm">{formatCurrency(bid.amount)}</span>
                   </div>
                 ))
               )}
@@ -340,7 +341,7 @@ export default function SellerDashboardPage() {
                         <h4 className="font-bold text-slate-900 text-xs">{item.title}</h4>
                         <p className="text-[11px] text-slate-500 mt-0.5">
                           Winning Final Bid:{' '}
-                          <strong className="text-purple-950">${item.currentHighestBid.toFixed(2)}</strong>
+                          <strong className="text-purple-950">{formatCurrency(item.currentHighestBid)}</strong>
                         </p>
                       </div>
                     </div>

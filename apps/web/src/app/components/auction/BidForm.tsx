@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useAuth } from '@/context/AuthContext';
 import { placeBidAction } from '@/app/actions/auction';
+import { formatCurrency } from '@/lib/currency';
 
 export interface Bid {
   id: string;
@@ -92,7 +93,7 @@ export default function BidForm({
     }
 
     if (amount < minAllowed) {
-      toast.error(`Bid must be at least $${minAllowed.toFixed(2)}.`);
+      toast.error(`Bid must be at least ${formatCurrency(minAllowed)}.`);
       return;
     }
 
@@ -140,7 +141,7 @@ export default function BidForm({
               Current Highest Bid
             </span>
             <span className="text-3xl font-black text-purple-950">
-              ${highestBid.toFixed(2)}
+              {formatCurrency(highestBid)}
             </span>
           </div>
           <div className="text-right">
@@ -154,7 +155,7 @@ export default function BidForm({
         <form onSubmit={handleAction} className="space-y-3">
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1">
-              Your Bid ($) — Min: ${minAllowed.toFixed(2)}
+              Your Bid (₹) — Min: {formatCurrency(minAllowed)}
             </label>
             <input
               type="number"
@@ -176,7 +177,7 @@ export default function BidForm({
                 onClick={() => handleQuickBid(inc)}
                 className="flex-1 py-1.5 px-3 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 rounded-lg text-xs font-bold transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                +${inc}
+                +{formatCurrency(inc)}
               </button>
             ))}
           </div>
@@ -217,7 +218,7 @@ export default function BidForm({
                 className="flex justify-between items-center text-xs py-1.5 border-b border-slate-200/60 last:border-b-0"
               >
                 <span className="font-semibold text-slate-700">{maskName(bid.bidderName)}</span>
-                <span className="font-bold text-purple-950">${bid.amount.toFixed(2)}</span>
+                <span className="font-bold text-purple-950">{formatCurrency(bid.amount)}</span>
                 <span className="text-[10px] text-slate-400">
                   {new Date(bid.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>

@@ -158,7 +158,7 @@ export default function ProfilePage() {
                   </div>
                   {act.details && <p className="text-sm font-medium text-slate-700">{act.details}</p>}
                   {act.amount && (
-                    <span className="text-sm font-black text-slate-900">${act.amount.toLocaleString()}</span>
+                    <span className="text-sm font-black text-slate-900">₹{act.amount.toLocaleString()}</span>
                   )}
                 </div>
               ))}

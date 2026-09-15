@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { AuctionStatus } from '@prisma/client';
 import { prisma } from '@/lib/db';
+import { formatCurrency } from '@/lib/currency';
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
@@ -363,7 +364,7 @@ function AuctionCard({
             </p>
 
             <p className="mt-0.5 text-lg font-black text-slate-950">
-              ${item.currentHighestBid.toFixed(2)}
+              {formatCurrency(item.currentHighestBid)}
             </p>
 
             <p className="text-[10px] text-slate-400">

@@ -6,6 +6,7 @@ import { useAuthGuard } from '@/hooks/useAuthGuard';
 import { useCart } from '@/context/CartContext';
 import { createOrder } from '@/lib/store';
 import { useNotifications } from '@/context/NotificationContext';
+import { formatCurrency } from '@/lib/currency';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -80,7 +81,7 @@ export default function CheckoutPage() {
                   <span className="text-slate-400">Qty: {item.quantity}</span>
                 </div>
                 <span className="font-bold text-purple-950">
-                  ${(item.price * item.quantity).toFixed(2)}
+                  {formatCurrency(item.price * item.quantity)}
                 </span>
               </div>
             ))}
@@ -89,15 +90,15 @@ export default function CheckoutPage() {
           <div className="border-t pt-3 space-y-1 text-xs">
             <div className="flex justify-between text-slate-600">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>{formatCurrency(subtotal)}</span>
             </div>
             <div className="flex justify-between text-slate-600">
               <span>Tax (8%)</span>
-              <span>${estimatedTax.toFixed(2)}</span>
+              <span>{formatCurrency(estimatedTax)}</span>
             </div>
             <div className="flex justify-between text-sm font-bold text-slate-900 border-t pt-2">
               <span>Total Amount</span>
-              <span>${totalAmount.toFixed(2)}</span>
+              <span>{formatCurrency(totalAmount)}</span>
             </div>
           </div>
         </div>
@@ -145,7 +146,7 @@ export default function CheckoutPage() {
             disabled={loading || cart.length === 0}
             className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs transition mt-4 disabled:opacity-50"
           >
-            {loading ? 'Processing Order...' : `Pay $${totalAmount.toFixed(2)}`}
+            {loading ? 'Processing Order...' : `Pay ${formatCurrency(totalAmount)}`}
           </button>
         </form>
       </div>

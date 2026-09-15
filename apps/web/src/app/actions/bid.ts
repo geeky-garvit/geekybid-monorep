@@ -53,7 +53,7 @@ export async function placeBidAction(
 
       const minBidRequired = Number(auction.currentPrice) + Number(auction.minIncrement);
       if (amount < minBidRequired) {
-        throw new Error(`Bid must be at least $${minBidRequired.toFixed(2)}.`);
+        throw new Error(`Bid must be at least ₹${minBidRequired.toFixed(2)}.`);
       }
 
       // Anti-sniping rule: extend by 2 minutes if bid placed within last 2 minutes
@@ -90,7 +90,7 @@ export async function placeBidAction(
         data: {
           userId: currentUser.id,
           action: 'PLACED_BID',
-          details: `Placed bid of $${amount} on "${auction.title}"`,
+          details: `Placed bid of ₹${amount} on "${auction.title}"`,
           amount,
         },
       });
@@ -108,7 +108,7 @@ export async function placeBidAction(
       success: true,
       message: result.timeExtended
         ? `Bid accepted! ⚡ Anti-sniping protection activated: Time extended by 2 minutes.`
-        : `Bid placed successfully. New highest bid: $${Number(result.updatedAuction.currentPrice).toFixed(2)}`,
+        : `Bid placed successfully. New highest bid: ₹${Number(result.updatedAuction.currentPrice).toFixed(2)}`,
       highestBid: Number(result.updatedAuction.currentPrice),
       newEndTime: result.updatedAuction.endTime,
       timeExtended: result.timeExtended,

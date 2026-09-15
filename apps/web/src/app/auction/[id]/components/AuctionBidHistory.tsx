@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { formatCurrency } from '@/lib/currency';
 import Image from 'next/image';
 
 export interface Bid {
@@ -38,7 +39,7 @@ export default function AuctionBidHistory({ bids }: AuctionBidHistoryProps) {
                 <span className="text-[10px] text-slate-400">{bid.timestamp}</span>
               </div>
             </div>
-            <span className="font-black text-purple-950">${bid.amount.toFixed(2)}</span>
+            <span className="font-black text-purple-950">{formatCurrency(bid.amount)}</span>
           </div>
         ))}
       </div>

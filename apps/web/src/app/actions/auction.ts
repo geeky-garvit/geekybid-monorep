@@ -156,7 +156,7 @@ export async function placeBidAction(
         data: {
           userId: dbUser.id,
           action: 'BID_PLACED',
-          details: `Placed bid of $${amount.toFixed(2)} on "${auction.title}"`,
+          details: `Placed bid of ₹${amount.toFixed(2)} on "${auction.title}"`,
           amount,
         },
       });
@@ -190,7 +190,7 @@ export async function placeBidAction(
     if (message === 'SELF_BIDDING') return { success: false, message: 'You cannot bid on your own auction.' };
     if (message === 'AUCTION_ENDED') return { success: false, message: 'This auction has already ended.' };
     if (message.startsWith('BID_TOO_LOW:')) {
-      return { success: false, message: `Bid must be at least $${message.split(':')[1]}.` };
+      return { success: false, message: `Bid must be at least ₹${message.split(':')[1]}.` };
     }
 
     return { success: false, message: 'Server error while processing your bid.' };

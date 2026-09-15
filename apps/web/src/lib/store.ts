@@ -189,7 +189,7 @@ export function placeBid(auctionId: string, amount: number, userId: string, user
 
   const minimum = auction.currentHighestBid + auction.minIncrement;
   if (!Number.isFinite(amount) || amount < minimum) {
-    throw new Error(`Bid must be at least $${minimum.toFixed(2)}.`);
+    throw new Error(`Bid must be at least ₹${minimum.toFixed(2)}.`);
   }
 
   if (new Date(auction.endTime).getTime() - Date.now() <= 120000) {

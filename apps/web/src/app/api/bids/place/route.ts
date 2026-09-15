@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     const minimumBid = Math.max(auction.startingBid, auction.currentPrice || auction.startingBid) + (auction.minIncrement ?? 1);
     if (amount < minimumBid) {
       return NextResponse.json(
-        { success: false, message: `Bid must be at least $${minimumBid.toFixed(2)}.` },
+        { success: false, message: `Bid must be at least ₹${minimumBid.toFixed(2)}.` },
         { status: 400 }
       );
     }

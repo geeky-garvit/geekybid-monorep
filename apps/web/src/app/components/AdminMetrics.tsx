@@ -21,7 +21,7 @@ export default function AdminMetrics({
         <span className="text-[10px] font-bold uppercase text-slate-400 tracking-wider">
           Total Paid Revenue
         </span>
-        <p className="text-2xl font-black text-purple-950">${totalRevenue.toFixed(2)}</p>
+        <p className="text-2xl font-black text-purple-950">₹{totalRevenue.toFixed(2)}</p>
       </div>
 
       <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-1">

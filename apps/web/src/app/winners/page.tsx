@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { getCompletedAuctions } from '@/lib/db';
 import Link from 'next/link';
+import { formatCurrency } from '@/lib/currency';
 
 export const dynamic = 'force-dynamic';
 
@@ -97,7 +98,7 @@ export default async function WinnersPage() {
                     </p>
 
                     <p className="text-xl font-bold text-slate-900">
-                      ${auction.currentPrice.toLocaleString()}
+                      {formatCurrency(auction.currentPrice)}
                     </p>
                     <Link
                       href={`/winners/${auction.id}`}

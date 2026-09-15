@@ -24,10 +24,10 @@ export default function PricingSection({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            Starting Price ($ USD) *
+            Starting Price (₹ INR) *
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-2.5 text-xs font-bold text-slate-400">$</span>
+            <span className="absolute left-3 top-2.5 text-xs font-bold text-slate-400">₹</span>
             <input
               type="number"
               step="0.01"
@@ -42,10 +42,10 @@ export default function PricingSection({
 
         <div>
           <label className="block text-xs font-bold text-slate-700 mb-1">
-            Reserve Price ($ USD) <span className="font-normal text-slate-400">(Optional)</span>
+            Reserve Price (₹ INR) <span className="font-normal text-slate-400">(Optional)</span>
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-2.5 text-xs font-bold text-slate-400">$</span>
+            <span className="absolute left-3 top-2.5 text-xs font-bold text-slate-400">₹</span>
             <input
               type="number"
               step="0.01"

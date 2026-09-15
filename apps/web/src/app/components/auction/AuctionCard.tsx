@@ -5,31 +5,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { Auction } from '@/lib/store';
+import { formatCurrency } from '@/lib/currency';
 
 interface AuctionCardProps {
   auction: Auction;
   initialIsWatchlisted?: boolean;
   onWatchlistToggle?: (auctionId: string, isWatchlisted: boolean) => void;
 }
-
-// Utility to format prices safely across large digit inputs
-const formatCurrency = (amount: number = 0): string => {
-  if (amount >= 1_000_000) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      notation: 'compact',
-      maximumFractionDigits: 2,
-    }).format(amount);
-  }
-
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(amount);
-};
 
 export default function AuctionCard({
   auction: initialAuction,

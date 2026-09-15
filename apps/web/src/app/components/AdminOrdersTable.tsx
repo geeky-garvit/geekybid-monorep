@@ -38,7 +38,7 @@ export default function AdminOrdersTable({
                   <td className="p-4 font-bold text-slate-800">{order.id}</td>
                   <td className="p-4 text-slate-500">{order.winnerId}</td>
                   <td className="p-4 font-black text-purple-950">
-                    ${order.amount?.toFixed(2)}
+                    ₹{order.amount?.toFixed(2)}
                   </td>
                   <td className="p-4">
                     <span

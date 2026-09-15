@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useAuth } from '@/context/AuthContext';
+import { formatCurrency } from '@/lib/currency';
 
 interface TimeLeft {
   hours: number;
@@ -77,7 +78,7 @@ export default function AuctionBiddingCard({
     // 2. Minimum bid value validation
     if (isNaN(amount) || amount < minBidAllowed) {
       toast.error('Bid amount too low!', {
-        description: `Minimum bid required is $${minBidAllowed.toFixed(2)}.`,
+        description: `Minimum bid required is ${formatCurrency(minBidAllowed)}.`,
       });
       return;
     }
@@ -146,7 +147,7 @@ export default function AuctionBiddingCard({
         <div>
           <span className="text-xs text-slate-500 font-semibold block">Current High Bid</span>
           <span className="text-3xl font-black text-purple-950">
-            ${currentHighestBid.toFixed(2)}
+              {formatCurrency(currentHighestBid)}
           </span>
         </div>
         <span className="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
@@ -171,10 +172,10 @@ export default function AuctionBiddingCard({
           <form onSubmit={handleSubmit} className="space-y-3">
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1">
-                Enter Amount (Min: ${minBidAllowed.toFixed(2)})
+                Enter Amount (Min: {formatCurrency(minBidAllowed)})
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-3 text-xs font-bold text-slate-400">$</span>
+                <span className="absolute left-3 top-3 text-xs font-bold text-slate-400">₹</span>
                 <input
                   type="number"
                   step="0.01"

@@ -10,6 +10,7 @@ import AuctionGallery from './components/AuctionGallery';
 import AuctionBiddingCard from './components/AuctionBiddingCard';
 import AuctionBidHistory, { Bid } from './components/AuctionBidHistory';
 import { useAuctionLiveViewers } from '@/hooks/useAuctionLiveViewers';
+import { formatCurrency } from '@/lib/currency';
 
 export default function AuctionDetailPage({
   params,
@@ -170,7 +171,7 @@ export default function AuctionDetailPage({
 
         toast.success('Bid placed successfully!', {
           id: toastId,
-          description: `You are now the highest bidder at $${amount.toFixed(2)}`,
+          description: `You are now the highest bidder at ${formatCurrency(amount)}`,
         });
 
         fetchAuctionFromDb();

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { formatCurrency } from '@/lib/currency';
 
 export interface OrderItem {
   id?: string;
@@ -63,7 +64,7 @@ export default function OrderCard({ order }: OrderCardProps) {
 
         <div>
           <span className="text-[10px] font-bold text-slate-400 uppercase">Total</span>
-          <p className="text-sm font-black text-purple-950">${totalAmount.toFixed(2)}</p>
+          <p className="text-sm font-black text-purple-950">{formatCurrency(totalAmount)}</p>
         </div>
       </div>
 
@@ -100,7 +101,7 @@ export default function OrderCard({ order }: OrderCardProps) {
                       {item.title || 'Auction Item'}
                     </p>
                     <span className="text-slate-500 font-medium text-[11px]">
-                      ${itemPrice.toFixed(2)} × {itemQty}
+                      {formatCurrency(itemPrice)} × {itemQty}
                     </span>
                   </div>
                 </div>
