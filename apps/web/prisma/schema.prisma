@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AuctionStatus {
+  ACTIVE
+  ENDED
+  CANCELLED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  avatar       String?
+  role         String   @default("collector")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  auctions        Auction[] @relation("SellerAuctions")
+  bids            Bid[]
+  winningAuctions Auction[] @relation("HighestBidderRelation")
+  activities      Activity[]
+  communityMembers CommunityMember[]
+  ownedCommunity  Community?
+  watchlist       Watchlist[]
+  cartItems       CartItem[]
+}
+
+model Auction {
+  id           String        @id @default(uuid())
+  title        String
+  description  String
+  category     String
+  startingBid  Float
+  currentPrice Float
+  minIncrement Float         @default(5)
+  images       String[]
+  attributes   Json?
+  endTime      DateTime
+  status       AuctionStatus @default(ACTIVE)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  sellerId String
+  seller   User   @relation("SellerAuctions", fields: [sellerId], references: [id], onDelete: Cascade)
+
+  highestBidderId String?
+  highestBidder   User?   @relation("HighestBidderRelation", fields: [highestBidderId], references: [id])
+
+  bids       Bid[]
+  viewers    AuctionViewer[]
+  watchlist  Watchlist[]
+  cartItems  CartItem[]
+}
+
+model Bid {
+  id        String   @id @default(uuid())
+  amount    Float
+  createdAt DateTime @default(now())
+  timestamp DateTime @default(now())
+
+  auctionId String
+  auction   Auction @relation(fields: [auctionId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Watchlist {
+  id        String   @id @default(uuid())
+  userId    String
+  auctionId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  auction Auction @relation(fields: [auctionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, auctionId])
+  @@index([userId])
+  @@index([auctionId])
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  userId    String
+  auctionId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  auction Auction @relation(fields: [auctionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, auctionId])
+  @@index([userId])
+  @@index([auctionId])
+}
+
+model Activity {
+  id        String   @id @default(uuid())
+  action    String
+  details   String?
+  amount    Float?
+  timestamp DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Community {
+  id        String   @id @default(uuid())
+  title     String
+  createdAt DateTime @default(now())
+
+  sellerId String @unique
+  seller   User   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+
+  members CommunityMember[]
+}
+
+model CommunityMember {
+  id       String   @id @default(uuid())
+  role     String   @default("MEMBER")
+  joinedAt DateTime @default(now())
+
+  communityId String
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([communityId, userId])
+}
+
+model AuctionViewer {
+  id        String   @id @default(cuid())
+  auctionId String
+  sessionId String
+  lastSeen  DateTime @updatedAt
+
+  auction Auction @relation(fields: [auctionId], references: [id], onDelete: Cascade)
+
+  @@unique([auctionId, sessionId])
+  @@index([auctionId])
+  @@index([lastSeen])
+}
