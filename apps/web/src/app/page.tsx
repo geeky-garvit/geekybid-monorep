@@ -500,7 +500,7 @@ export default async function HomePage() {
           HERO
       =================================================== */}
 
-      <section className="bg-gradient-to-b from-purple-900 via-purple-800 to-purple-950 text-white py-16 px-4">
+      <section className="bg-gradient-to-b from-lavender-400 via-purple-300 to-lavender-200 text-purple-950 py-16 px-4">
         <div className="max-w-5xl mx-auto text-center space-y-4">
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
             Bid in Real-Time. <br />
